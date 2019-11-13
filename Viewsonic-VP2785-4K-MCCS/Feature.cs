@@ -9,6 +9,7 @@ namespace Viewsonic_VP2785_4K_MCCS
         public string Name { get; protected set; }
         public byte Code { get; protected set; }
         public TimeSpan Delay { get; protected set; }
+        public string Description { get; protected set; }
 
 
         protected Feature(string name, byte code, float delaySeconds = 0.5f)
@@ -23,5 +24,8 @@ namespace Viewsonic_VP2785_4K_MCCS
 
 
         public abstract string ValueName(uint value);
+
+
+        public abstract string YAMLTemplate();
     }
 }

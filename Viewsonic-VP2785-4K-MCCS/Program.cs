@@ -16,7 +16,8 @@ namespace Viewsonic_VP2785_4K_MCCS
     {
         static void Main(string[] args)
         {
-            SetMode(configWork);
+            Console.WriteLine(Features.YAMLTemplate());
+            //SetMode(configWork);
             //CompareSettings();
 
             Console.WriteLine("Press any key to exit...");
@@ -80,12 +81,6 @@ namespace Viewsonic_VP2785_4K_MCCS
 
             return result;
         }
-
-
-        const string configTest = @"
-            #PIPVideoInput: HDMI1, HDMI2, TypeC
-            PIPVideoInput: HDMI1
-            ";
 
 
         const string configWork = @"

@@ -10,10 +10,11 @@ namespace Viewsonic_VP2785_4K_MCCS
         public uint To { get; private set; }
 
 
-        public FeatureValuesRange(string name, byte code, uint from, uint to, float delaySeconds = 0) : base(name, code, delaySeconds)
+        public FeatureValuesRange(string name, byte code, uint from, uint to, float delaySeconds = 0, string description = null) : base(name, code, delaySeconds)
         {
             From = from;
             To = to;
+            Description = description ?? $"{Name}: value beetween {From} and {To}";
         }
 
 
@@ -32,6 +33,12 @@ namespace Viewsonic_VP2785_4K_MCCS
         public override string ValueName(uint value)
         {
             return value.ToString();
+        }
+
+
+        public override string YAMLTemplate()
+        {
+            return $"#{Description}\r\n#{Name}: {From}";
         }
     }
 }

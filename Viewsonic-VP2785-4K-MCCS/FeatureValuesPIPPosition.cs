@@ -11,7 +11,10 @@ namespace Viewsonic_VP2785_4K_MCCS
         private const uint k = 256;
 
 
-        public FeatureValuesPIPPosition(string name, byte code, float delaySeconds = 0) : base(name, code, delaySeconds) { }
+        public FeatureValuesPIPPosition(string name, byte code, float delaySeconds = 0) : base(name, code, delaySeconds)
+        {
+            Description = "PIPPosition: [X, Y], X must be beetween 0 and 100 where 0 is the left of the screen, 100 is the right of the screen, Y must be beetween 0 and 100 where 0 is the bottom of the screen, 100 is the top of the screen";
+        }
 
 
         public override bool TryParseValue(YamlNode node, out uint value)
@@ -42,6 +45,12 @@ namespace Viewsonic_VP2785_4K_MCCS
         public override string ValueName(uint value)
         {
             return $"[{value / k}, {value % k}]";
+        }
+
+
+        public override string YAMLTemplate()
+        {
+            return $"#{Description}\r\n#{Name}: [{from}, {from}]";
         }
     }
 }

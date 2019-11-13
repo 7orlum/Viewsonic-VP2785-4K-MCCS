@@ -6,7 +6,10 @@ namespace Viewsonic_VP2785_4K_MCCS
 {
     public class Feature<T>: Feature where T : Enum
     {
-        public Feature(string name, byte code, float delaySeconds = 0) : base(name, code, delaySeconds) { }
+        public Feature(string name, byte code, float delaySeconds = 0) : base(name, code, delaySeconds)
+        {
+            Description = $"{Name}: {string.Join(", ", Enum.GetNames(typeof(T)))}";
+        }
 
 
         public override bool TryParseValue(YamlNode node, out uint value)
@@ -38,6 +41,12 @@ namespace Viewsonic_VP2785_4K_MCCS
                 return ((T)Enum.ToObject(typeof(T), value)).ToString();
             else
                 return value.ToString();
+        }
+
+
+        public override string YAMLTemplate()
+        {
+            return $"#{Description}\r\n#{Name}: {Enum.GetNames(typeof(T))[0]}";
         }
     }
 }
