@@ -11,7 +11,7 @@ namespace Viewsonic_VP2785_4K_MCCS
         public TimeSpan Delay { get; protected set; }
 
 
-        protected Feature(string name, byte code, float delaySeconds = 0.1f)
+        protected Feature(string name, byte code, float delaySeconds = 0.5f)
         {
             Name = name;
             Code = code;
@@ -20,5 +20,8 @@ namespace Viewsonic_VP2785_4K_MCCS
 
 
         public abstract bool TryParseValue(YamlNode node, out uint value);
+
+
+        public abstract string ValueName(uint value);
     }
 }

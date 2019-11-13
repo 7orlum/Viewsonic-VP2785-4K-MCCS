@@ -141,7 +141,7 @@ namespace Viewsonic_VP2785_4K_MCCS
             StandardColor: Adobe
 
             #Brightness: value beetween 0 and 100 where 0 is the minimal brightness, 10 is the maximal brightness
-            Brightness: 35
+            Brightness: 33
             ";
 
 
@@ -214,16 +214,16 @@ namespace Viewsonic_VP2785_4K_MCCS
                 {
                     if (!NativeMethods.GetVCPFeatureAndVCPFeatureReply(handle, feature.Code, out _, out currentValue, out _))
                         throw new InvalidOperationException($"{nameof(NativeMethods.GetVCPFeatureAndVCPFeatureReply)} returned error {Marshal.GetLastWin32Error()}");
+
+                    if (newValue == currentValue)
+                        continue;
                 }
                 catch
                 {
                     Console.WriteLine($"GetVCPFeature fault for {feature.Name}");
                 }
 
-                if (newValue == currentValue)
-                    continue;
-
-                Console.WriteLine($"Update {feature.Code:X2}: {currentValue} -> {newValue} ({feature.Name})");
+                Console.WriteLine($"Update {feature.Name} {feature.ValueName(currentValue)}->{feature.ValueName(newValue)} ({feature.Code:X2} {currentValue}->{newValue})");
 
                 if (!NativeMethods.SetVCPFeature(handle, feature.Code, newValue))
                     throw new InvalidOperationException($"{nameof(NativeMethods.SetVCPFeature)} returned error {Marshal.GetLastWin32Error()}");

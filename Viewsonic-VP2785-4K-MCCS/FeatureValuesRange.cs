@@ -27,5 +27,11 @@ namespace Viewsonic_VP2785_4K_MCCS
             value = default;
             return false;
         }
+
+
+        public override string ValueName(uint value)
+        {
+            return value.ToString();
+        }
     }
 }

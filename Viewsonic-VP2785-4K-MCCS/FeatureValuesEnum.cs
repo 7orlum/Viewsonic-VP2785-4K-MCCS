@@ -30,5 +30,14 @@ namespace Viewsonic_VP2785_4K_MCCS
             value = default;
             return false;
         }
+
+
+        public override string ValueName(uint value)
+        {
+            if (Enum.IsDefined(typeof(T), value))
+                return ((T)Enum.ToObject(typeof(T), value)).ToString();
+            else
+                return value.ToString();
+        }
     }
 }

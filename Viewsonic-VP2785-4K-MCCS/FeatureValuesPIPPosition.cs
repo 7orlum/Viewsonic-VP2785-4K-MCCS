@@ -8,6 +8,7 @@ namespace Viewsonic_VP2785_4K_MCCS
     {
         private const uint from = 0;
         private const uint to = 100;
+        private const uint k = 256;
 
 
         public FeatureValuesPIPPosition(string name, byte code, float delaySeconds = 0) : base(name, code, delaySeconds) { }
@@ -27,7 +28,7 @@ namespace Viewsonic_VP2785_4K_MCCS
                     if (uint.TryParse(((YamlScalarNode)children[0]).Value, out x) && uint.TryParse(((YamlScalarNode)children[1]).Value, out y))
                         if (x >= from && x <= to && y >= from && y <= to)
                         {
-                            value = x * 256 + y;
+                            value = x * k + y;
                             return true;
                         }
                 }
@@ -35,6 +36,12 @@ namespace Viewsonic_VP2785_4K_MCCS
 
             value = default;
             return false;
+        }
+
+
+        public override string ValueName(uint value)
+        {
+            return $"[{value / k}, {value % k}]";
         }
     }
 }

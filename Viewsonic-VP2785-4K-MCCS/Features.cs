@@ -10,11 +10,11 @@ namespace Viewsonic_VP2785_4K_MCCS
         {
             new FeatureValuesRange("Brightness", 0x10, 0, 100),
             new Feature<StandardColor>("StandardColor", 0x14),
-            new Feature<AudioInput>("AudioInput", 0x1D),
+            new Feature<AudioInput>("AudioInput", 0x1D, delaySeconds: 4),
             new Feature<LowInputLag>("LowInputLag", 0x23),
             new Feature<ResponceTime>("ResponceTime", 0x25),
-            new Feature<VideoInputAutodetect>("VideoInputAutodetect", 0x33, delaySeconds: 2),
-            new Feature<VideoInput>("VideoInput", 0x60, delaySeconds: 2),
+            new Feature<VideoInputAutodetect>("VideoInputAutodetect", 0x33, delaySeconds: 4),
+            new Feature<VideoInput>("VideoInput", 0x60, delaySeconds: 4),
             new FeatureValuesRange("Volume", 0x62, 0, 100),
             new Feature<AmbientLightSensor>("AmbientLightSensor", 0x66),
             new Feature<PresenceSensor>("PresenceSensor", 0x67),
@@ -22,7 +22,7 @@ namespace Viewsonic_VP2785_4K_MCCS
             new FeatureValuesPIPPosition("PIPPosition", 0x96),
             new FeatureValuesRange("PIPSize", 0x97, 0, 10),
             new Feature<DisplayApplication>("DisplayApplication", 0xDC),
-            new Feature<MultiPicture>("MultiPicture", 0xE8, delaySeconds: 2),
+            new Feature<MultiPicture>("MultiPicture", 0xE8, delaySeconds: 4),
             new Feature<Uniformity>("Uniformity", 0xE9),
         };
 
