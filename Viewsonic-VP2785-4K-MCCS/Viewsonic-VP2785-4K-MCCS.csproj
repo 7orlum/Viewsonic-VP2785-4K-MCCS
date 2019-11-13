@@ -47,13 +47,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FeatureExtensionMethods.cs" />
     <Compile Include="Feature.cs" />
-    <Compile Include="PossibleValuesAttribute.cs" />
+    <Compile Include="Features.cs" />
+    <Compile Include="FeatureValuesPIPPosition.cs" />
+    <Compile Include="FeatureValuesEnum.cs" />
+    <Compile Include="FeatureValuesRange.cs" />
     <Compile Include="DelaySecondsAttribute.cs" />
-    <Compile Include="PossibleValuesPIPPositionAttribute.cs" />
-    <Compile Include="PossibleValuesRangeAttribute.cs" />
-    <Compile Include="PossibleValuesEnumAttribute.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="NativeMethods.cs" />

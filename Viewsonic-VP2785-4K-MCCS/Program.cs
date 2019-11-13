@@ -70,16 +70,12 @@ namespace Viewsonic_VP2785_4K_MCCS
 
             foreach (var entry in mapping.Children)
             {
-                Feature command;
-                if (!Enum.TryParse<Feature>(entry.Key.ToString(), true, out command) || !Enum.IsDefined(typeof(Feature), command))
-                {
-                    Console.WriteLine($"Неизвестная команда {entry.Key}");
-                    continue;
-                }
-
+                Feature feature;
                 uint value;
-                if (command.TryParseValue(entry.Value, out value))
-                    result.Add(command, value);
+                if (Features.TryParse(entry.Key, entry.Value, out feature, out value))
+                    result.Add(feature, value);
+                else
+                    Console.WriteLine($"Неверная команда {entry.Key}");
             }
 
             return result;
@@ -216,25 +212,23 @@ namespace Viewsonic_VP2785_4K_MCCS
 
                 try
                 {
-                    if (!NativeMethods.GetVCPFeatureAndVCPFeatureReply(handle, (byte)feature, out _, out currentValue, out _))
+                    if (!NativeMethods.GetVCPFeatureAndVCPFeatureReply(handle, feature.Code, out _, out currentValue, out _))
                         throw new InvalidOperationException($"{nameof(NativeMethods.GetVCPFeatureAndVCPFeatureReply)} returned error {Marshal.GetLastWin32Error()}");
                 }
                 catch
                 {
-                    Console.WriteLine($"GetVCPFeature fault for {feature}");
+                    Console.WriteLine($"GetVCPFeature fault for {feature.Name}");
                 }
 
                 if (newValue == currentValue)
                     continue;
 
-                Console.WriteLine($"Update {(uint)feature:X2}: {currentValue} -> {newValue} ({feature})");
+                Console.WriteLine($"Update {feature.Code:X2}: {currentValue} -> {newValue} ({feature.Name})");
 
-                if (!NativeMethods.SetVCPFeature(handle, (byte)feature, newValue))
+                if (!NativeMethods.SetVCPFeature(handle, feature.Code, newValue))
                     throw new InvalidOperationException($"{nameof(NativeMethods.SetVCPFeature)} returned error {Marshal.GetLastWin32Error()}");
 
-                TimeSpan delay = feature.Delay();
-                if (delay > TimeSpan.Zero)
-                    Task.Delay(delay).Wait();
+                Task.Delay(feature.Delay).Wait();
             }
         }
 
