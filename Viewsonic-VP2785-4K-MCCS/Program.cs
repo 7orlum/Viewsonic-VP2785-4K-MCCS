@@ -14,14 +14,51 @@ namespace Viewsonic_VP2785_4K_MCCS
 {
     class Program
     {
+        static string _help = @"Help";
+
+
         static void Main(string[] args)
         {
-            Console.WriteLine(Features.YAMLTemplate());
-            //SetMode(configWork);
-            //CompareSettings();
+            if (args != null && args.Length == 1)
+                DoWork(args[0]);
+            else
+                Console.WriteLine(_help);
+        }
 
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
+
+        private static void DoWork(string path)
+        {
+            Dictionary<Feature, uint> settings;
+            
+            using (var streamReader = new StreamReader(path))
+            {
+                settings = ReadConfig(streamReader);
+            }
+
+            UpdateSettings(GetMonitors()[0].Handle, settings);
+        }
+
+
+        static Dictionary<Feature, uint> ReadConfig(TextReader textReader)
+        {
+            var result = new Dictionary<Feature, uint>();
+
+            var yaml = new YamlStream();
+            yaml.Load(textReader);
+
+            var mapping = (YamlMappingNode)yaml.Documents[0].RootNode;
+
+            foreach (var entry in mapping.Children)
+            {
+                Feature feature;
+                uint value;
+                if (Features.TryParse(entry.Key, entry.Value, out feature, out value))
+                    result.Add(feature, value);
+                else
+                    Console.WriteLine($"Неверная команда {entry.Key}");
+            }
+
+            return result;
         }
 
 
@@ -83,120 +120,6 @@ namespace Viewsonic_VP2785_4K_MCCS
         }
 
 
-        const string configWork = @"
-            #PresenceSensor: Off, Level1, Level2, Level3
-            PresenceSensor: Level3
-
-            #PIPPosition: [X, Y], X must be beetween 0 and 100 where 0 is the left of the screen, 100 is the right of the screen, Y must be beetween 0 and 100 where 0 is the bottom of the screen, 100 is the top of the screen
-            #PIPPosition: [95, 15]
-
-            #PIPSize: value beetween 0 and 10 where 0 is the minimal size, 10 is the maximal size
-            #PIPSize: 0
-
-            #VideoInput: HDMI1, HDMI2, DisplayPort, MiniDisplayPort, TypeC
-            VideoInput: HDMI2
-
-            #MultiPicture: Off, PIP, PBPLeftRight, PBPTopBottom, QuadWindows
-            MultiPicture: Off
-
-            #AudioInput: HDMI1, HDMI2, DisplayPort, MiniDisplayPort, TypeC, Auto
-            #AudioInput: HDMI1
-
-            #Volume: value beetween 0 and 100 where 0 is the minimal volume, 10 is the maximal volume
-            Volume: 25
-
-            #StandardColor: Adobe
-            StandardColor: Adobe
-            ";
-
-
-        const string configPIP = @"
-            #PresenceSensor: Off, Level1, Level2, Level3
-            PresenceSensor: Level3
-
-            #PIPPosition: [X, Y], X must be beetween 0 and 100 where 0 is the left of the screen, 100 is the right of the screen, Y must be beetween 0 and 100 where 0 is the bottom of the screen, 100 is the top of the screen
-            PIPPosition: [95, 15]
-
-            #PIPSize: value beetween 0 and 10 where 0 is the minimal size, 10 is the maximal size
-            PIPSize: 0
-
-            #VideoInput: HDMI1, HDMI2, DisplayPort, MiniDisplayPort, TypeC
-            VideoInput: HDMI2
-
-            #MultiPicture: Off, PIP, PBPLeftRight, PBPTopBottom, QuadWindows
-            MultiPicture: PIP
-
-            #AudioInput: HDMI1, HDMI2, DisplayPort, MiniDisplayPort, TypeC, Auto
-            AudioInput: HDMI1
-
-            #Volume: value beetween 0 and 100 where 0 is the minimal volume, 10 is the maximal volume
-            Volume: 100
-
-            #StandardColor: Adobe
-            StandardColor: Adobe
-
-            #Brightness: value beetween 0 and 100 where 0 is the minimal brightness, 10 is the maximal brightness
-            Brightness: 33
-            ";
-
-
-        const string configChrome = @"
-            #PresenceSensor: Off, Level1, Level2, Level3
-            PresenceSensor: Off
-
-            #PIPPosition: [X, Y], X must be beetween 0 and 100 where 0 is the left of the screen, 100 is the right of the screen, Y must be beetween 0 and 100 where 0 is the bottom of the screen, 100 is the top of the screen
-            #PIPPosition: [95, 15]
-
-            #PIPSize: value beetween 0 and 10 where 0 is the minimal size, 10 is the maximal size
-            #PIPSize: 0
-
-            #VideoInput: HDMI1, HDMI2, DisplayPort, MiniDisplayPort, TypeC
-            VideoInput: HDMI1
-
-            #MultiPicture: Off, PIP, PBPLeftRight, PBPTopBottom, QuadWindows
-            MultiPicture: Off
-
-            #AudioInput: HDMI1, HDMI2, DisplayPort, MiniDisplayPort, TypeC, Auto
-            #AudioInput: HDMI1
-
-            #Volume: value beetween 0 and 100 where 0 is the minimal volume, 10 is the maximal volume
-            Volume: 100
-
-            #DisplayApplication : Movie
-            DisplayApplication : Movie
-            ";
-
-
-        const string configMovie = @"
-            #PresenceSensor: Off, Level1, Level2, Level3
-            PresenceSensor: Off
-
-            #PIPPosition: [X, Y], X must be beetween 0 and 100 where 0 is the left of the screen, 100 is the right of the screen, Y must be beetween 0 and 100 where 0 is the bottom of the screen, 100 is the top of the screen
-            #PIPPosition: [95, 15]
-
-            #PIPSize: value beetween 0 and 10 where 0 is the minimal size, 10 is the maximal size
-            #PIPSize: 0
-
-            #VideoInput: HDMI1, HDMI2, DisplayPort, MiniDisplayPort, TypeC
-            VideoInput: HDMI2
-
-            #MultiPicture: Off, PIP, PBPLeftRight, PBPTopBottom, QuadWindows
-            MultiPicture: Off
-
-            #AudioInput: HDMI1, HDMI2, DisplayPort, MiniDisplayPort, TypeC, Auto
-            #AudioInput: HDMI1
-
-            #Volume: value beetween 0 and 100 where 0 is the minimal volume, 10 is the maximal volume
-            Volume: 100
-
-            #StandardColor: Adobe
-            StandardColor: Adobe
-
-            #DisplayApplication : Movie
-            DisplayApplication : Movie
-            ";
-
-
         static void UpdateSettings(SafePhysicalMonitorHandle handle, Dictionary<Feature, uint> settings)
         {
             foreach (var setting in settings)
@@ -240,9 +163,6 @@ namespace Viewsonic_VP2785_4K_MCCS
 
             return result;
         }
-
-
-        const string capabilityString = @"(prot(monitor)type(LCD)model(VP2785 series)cmds(01 02 03 07 0C E3 F3)vcp(02 04 05 08 0B 0C 10 12 14(01 02 04 05 06 08 0B 0E 0F 10 11 12 13 15 16 17 18) 16 18 1A 1D(F1 15 0F 11 12 17) 21(01 02 03 04 05) 23(01 02 03) 25(01 02 03) 27(01 02) 2B(01 02) 2D(01 02) 2F(01 02) 31(01 02) 33(01 02) 52 59 5A 5B 5C 5D 5E 60(15 0F 11 12 17) 62 66(01 02) 67(00 01 02 03) 68(01 02 03 04) 6C 6E 70 72(00 78 FB 50 64 78 8C A0) 87 8D 96 97 9B 9C 9D 9E 9F A0 AA AC AE B6 C0 C6 C8 C9 CA(01 02 03 04 05) CC(01 02 03 04 05 06 07 09 0A 0B 0C 0D 12 16) D6(01 04 05) DA(00 02) DB(01 02 03 05 06) DC(00 03 04 30 31 32 33 34 35 36 37 38 39 3A 3B 3C 3D 3E) DF E1(00 19 32 4B 64) E2 E3(00 01 02) E4(01 02) E5(01 02) E7(01 02) E8(01 02 03 04 05) E9(01 02) EA EB EC ED(01 02) EF(01 02) F3(00 01 02 03))mswhql(1)asset_eep(40)mccs_ver(2.2))";
 
 
         public class Monitor

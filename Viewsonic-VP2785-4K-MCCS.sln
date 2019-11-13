@@ -5,6 +5,14 @@ VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Viewsonic-VP2785-4K-MCCS", "Viewsonic-VP2785-4K-MCCS\Viewsonic-VP2785-4K-MCCS.csproj", "{5A46C976-1A27-4463-A390-29F8570BD7E5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{47A41674-17BD-4640-9CBA-5092D6760E02}"
+	ProjectSection(SolutionItems) = preProject
+		Configs\Chrome.yaml = Configs\Chrome.yaml
+		Configs\Movie.yaml = Configs\Movie.yaml
+		Configs\PIP.yaml = Configs\PIP.yaml
+		Configs\Work.yaml = Configs\Work.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -1,0 +1,29 @@
+#PresenceSensor: Off, Level1, Level2, Level3
+PresenceSensor: Level3
+
+#VideoInput: HDMI1, HDMI2, DisplayPort, MiniDisplayPort, TypeC
+VideoInput: HDMI2
+
+#MultiPicture: Off, PIP, PBPLeftRight, PBPTopBottom, QuadWindows
+MultiPicture: PIP
+
+#PIPPosition: [X, Y], X must be beetween 0 and 100 where 0 is the left of the screen, 100 is the right of the screen, Y must be beetween 0 and 100 where 0 is the bottom of the screen, 100 is the top of the screen
+PIPPosition: [95, 15]
+
+#PIPSize: value beetween 0 and 10 where 0 is the minimal size, 10 is the maximal size
+PIPSize: 0
+
+#AudioInput: HDMI1, HDMI2, DisplayPort, MiniDisplayPort, TypeC, Auto
+AudioInput: HDMI1
+
+#Volume: value beetween 0 and 100 where 0 is the minimal volume, 10 is the maximal volume
+Volume: 100
+
+#DisplayApplication : Off, Movie, FPS1, FPS2, RTS, MODA, TextWeb, MAC, CADCAM, Animation, VideoEdit, Retro, Photo, Landscape, Portrait, Monochrome
+#DisplayApplication : MAC
+
+#StandardColor: sRGB, Adobe, EBU, SMPTEC, REC709, DICOMSIM, DCIP3, CAL1, CAL2, CAL3, iPhone
+StandardColor: Adobe
+
+#Brightness: value beetween 0 and 100 where 0 is the minimal brightness, 10 is the maximal brightness
+Brightness: 33

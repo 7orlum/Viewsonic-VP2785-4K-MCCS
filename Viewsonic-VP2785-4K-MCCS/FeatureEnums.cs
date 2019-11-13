@@ -9,7 +9,17 @@ namespace Viewsonic_VP2785_4K_MCCS
     public enum StandardColor : uint
     {
         NotAvailable = 0,
+        sRGB = 1,
         Adobe = 14,
+        EBU = 15,
+        SMPTEC = 16,
+        REC709 = 17,
+        DICOMSIM = 18,
+        DCIP3 = 19,
+        CAL1 = 21,
+        CAL2 = 22,
+        CAL3 = 23,
+        iPhone = 24,
         Custom = 255,
     }
 
@@ -90,8 +100,23 @@ namespace Viewsonic_VP2785_4K_MCCS
 
     public enum DisplayApplication : uint
     {
-        Default = 0,
+        Off = 0,
         Movie = 3,
+        FPS1 = 8,
+        FPS2 = 49,
+        RTS = 50,
+        MODA = 51,
+        Web = 52,
+        Text = 53,
+        MAC = 54,
+        CADCAM = 55,
+        Animation = 56,
+        VideoEdit = 57,
+        Retro = 58,
+        Photo = 59,
+        Landscape = 60,
+        Portrait = 61,
+        Monochrome = 62,
     }
 
 

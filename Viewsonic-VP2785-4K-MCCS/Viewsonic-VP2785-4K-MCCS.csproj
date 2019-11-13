@@ -53,7 +53,7 @@
     <Compile Include="FeatureValuesEnum.cs" />
     <Compile Include="FeatureValuesRange.cs" />
     <Compile Include="DelaySecondsAttribute.cs" />
-    <Compile Include="Enums.cs" />
+    <Compile Include="FeatureEnums.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="MonitorConfiguration.cs" />
