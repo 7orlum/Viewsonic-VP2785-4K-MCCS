@@ -3,7 +3,7 @@
 For example, to switch the monitor to HDMI1 video input and 30% brightness, write in config.yaml:
 
 ```yaml
-Video input: HDMI1 connectors
+VideoInput: HDMI1
 Brightness: 30
 ```
 
