@@ -4,9 +4,9 @@ using YamlDotNet.RepresentationModel;
 
 namespace Viewsonic_VP2785_4K_MCCS
 {
-    public class Feature<T>: Feature where T : Enum
+    public class FeatureEnumeration<T>: Feature where T : Enum
     {
-        public Feature(string name, byte code, float delaySeconds = 0) : base(name, code, delaySeconds)
+        public FeatureEnumeration(string name, byte code, float delaySeconds = 0) : base(name, code, delaySeconds)
         {
             Description = $"{Name}: {string.Join(", ", Enum.GetNames(typeof(T)))}";
         }
@@ -44,7 +44,7 @@ namespace Viewsonic_VP2785_4K_MCCS
         }
 
 
-        public override string YAMLTemplate()
+        public override string YamlConfigTemplate()
         {
             return $"#{Description}\r\n#{Name}: {Enum.GetNames(typeof(T))[0]}";
         }

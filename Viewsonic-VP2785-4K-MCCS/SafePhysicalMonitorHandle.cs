@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.ConstrainedExecution;
 using Microsoft.Win32.SafeHandles;
-using System.Security.Permissions;
 
 
 namespace Viewsonic_VP2785_4K_MCCS

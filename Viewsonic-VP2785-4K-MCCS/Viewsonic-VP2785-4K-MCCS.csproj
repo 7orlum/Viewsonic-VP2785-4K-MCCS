@@ -2,6 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <LangVersion>8.0</LangVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5A46C976-1A27-4463-A390-29F8570BD7E5}</ProjectGuid>
@@ -49,14 +50,13 @@
   <ItemGroup>
     <Compile Include="Feature.cs" />
     <Compile Include="Features.cs" />
-    <Compile Include="FeatureValuesPIPPosition.cs" />
-    <Compile Include="FeatureValuesEnum.cs" />
-    <Compile Include="FeatureValuesRange.cs" />
-    <Compile Include="DelaySecondsAttribute.cs" />
-    <Compile Include="FeatureEnums.cs" />
-    <Compile Include="Error.cs" />
+    <Compile Include="FeaturePIPPosition.cs" />
+    <Compile Include="FeatureEnumeration.cs" />
+    <Compile Include="FeatureRange.cs" />
+    <Compile Include="FeatureEnumerations.cs" />
+    <Compile Include="Capabilities.cs" />
     <Compile Include="NativeMethods.cs" />
-    <Compile Include="MonitorConfiguration.cs" />
+    <Compile Include="Monitor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SafePhysicalMonitorHandle.cs" />

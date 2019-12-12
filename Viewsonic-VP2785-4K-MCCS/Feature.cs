@@ -26,6 +26,6 @@ namespace Viewsonic_VP2785_4K_MCCS
         public abstract string ValueName(uint value);
 
 
-        public abstract string YAMLTemplate();
+        public abstract string YamlConfigTemplate();
     }
 }

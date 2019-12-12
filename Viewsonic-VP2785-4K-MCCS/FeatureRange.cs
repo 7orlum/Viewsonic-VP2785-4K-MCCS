@@ -1,16 +1,15 @@
-﻿using System;
-using YamlDotNet.RepresentationModel;
+﻿using YamlDotNet.RepresentationModel;
 
 
 namespace Viewsonic_VP2785_4K_MCCS
 {
-    public class FeatureValuesRange : Feature
+    public class FeatureRange : Feature
     {
         public uint From { get; private set; }
         public uint To { get; private set; }
 
 
-        public FeatureValuesRange(string name, byte code, uint from, uint to, float delaySeconds = 0, string description = null) : base(name, code, delaySeconds)
+        public FeatureRange(string name, byte code, uint from, uint to, float delaySeconds = 0, string description = null) : base(name, code, delaySeconds)
         {
             From = from;
             To = to;
@@ -36,7 +35,7 @@ namespace Viewsonic_VP2785_4K_MCCS
         }
 
 
-        public override string YAMLTemplate()
+        public override string YamlConfigTemplate()
         {
             return $"#{Description}\r\n#{Name}: {From}";
         }

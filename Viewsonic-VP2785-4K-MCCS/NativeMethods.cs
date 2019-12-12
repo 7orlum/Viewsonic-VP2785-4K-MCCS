@@ -7,7 +7,7 @@ using System.Security;
 namespace Viewsonic_VP2785_4K_MCCS
 {
     [SuppressUnmanagedCodeSecurity()]
-    static class NativeMethods
+    public static class NativeMethods
     {
         /// <summary>
         /// Retrieves a handle to the desktop window. The desktop window covers the entire screen. The desktop window is the area on top of which other windows are painted.
