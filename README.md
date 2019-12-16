@@ -13,7 +13,7 @@ and run the program:
 Viewsonic-VP2785-4K-MCCS.exe config.yaml
 ```
 
-The full list of commands supported by the utility is given below:
+The full list of commands supported by the utility is given below, just copy the desired settings to your configuration file. 
 
 ```yaml
 #Brightness: value beetween 0 and 100 where 0 is the minimal brightness, 10 is the maximal brightness
@@ -63,4 +63,10 @@ MultiPicture: NotAvailable
 
 #Uniformity: NotAvailable, Off, On
 Uniformity: NotAvailable
+```
+
+The program running with parameter /trace allows you to find the correspondence between monitor settings and control codes.
+
+```
+Viewsonic-VP2785-4K-MCCS.exe /trace
 ```

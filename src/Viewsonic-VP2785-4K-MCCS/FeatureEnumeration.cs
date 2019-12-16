@@ -46,7 +46,7 @@ namespace Viewsonic_VP2785_4K_MCCS
 
         public override string YamlConfigTemplate()
         {
-            return $"#{Description}\r\n#{Name}: {Enum.GetNames(typeof(T))[0]}";
+            return $"#{Description}\r\n{Name}: {Enum.GetNames(typeof(T))[0]}";
         }
     }
 }

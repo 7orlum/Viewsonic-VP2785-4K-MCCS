@@ -44,7 +44,7 @@ namespace Viewsonic_VP2785_4K_MCCS
 
         public override string YamlConfigTemplate()
         {
-            return $"#{Description}\r\n#{Name}: [{from}, {from}]";
+            return $"#{Description}\r\n{Name}: [{from}, {from}]";
         }
     }
 }
