@@ -68,5 +68,16 @@ Uniformity: NotAvailable
 The program running with parameter /trace allows you to find the correspondence between monitor settings and control codes.
 
 ```
-Viewsonic-VP2785-4K-MCCS.exe /trace
+> Viewsonic-VP2785-4K-MCCS.exe /trace
+Wait, the monitor configuration is being read
+Change the monitor settings and press any key to trace the changes or press Ctrl+C to exit
+Wait, the monitor configuration is being read
+62 50->90
+AC 3008->3015
+Change the monitor settings and press any key to trace the changes or press Ctrl+C to exit
+Wait, the monitor configuration is being read
+8D 2->1
+AC 3015->3008
+Change the monitor settings and press any key to trace the changes or press Ctrl+C to exit
+Wait, the monitor configuration is being read
 ```
