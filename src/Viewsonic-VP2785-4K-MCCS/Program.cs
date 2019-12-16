@@ -19,7 +19,7 @@ Viewsonic_VP2785_4K_MCCS /trace
     path    sends to the monitor commands from the specified YAML configuration file
     /trace  use it to find the correspondence between monitor settings and control codes
 
-The full list of commands is given below, just copy the desired settings to your configuration file:
+The full list of commands is given below, copy the desired commands to your configuration file:
 
 {Features.YamlConfigTemplate()}";
 
