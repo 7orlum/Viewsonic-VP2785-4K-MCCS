@@ -9,14 +9,14 @@ namespace Viewsonic_VP2785_4K_MCCS
     {
         private static List<Feature> features = new List<Feature> 
         {
-            new FeatureRange("Brightness", 0x10, 0, 100, description: "Brightness: value beetween 0 and 100 where 0 is the minimal brightness, 10 is the maximal brightness"),
+            new FeatureRange("Brightness", 0x10, 0, 100, description: "Brightness: value beetween 0 and 100 where 0 is the minimal brightness, 100 is the maximal brightness"),
             new FeatureEnumeration<StandardColor>("StandardColor", 0x14),
             new FeatureEnumeration<AudioInput>("AudioInput", 0x1D, delaySeconds: 4),
             new FeatureEnumeration<LowInputLag>("LowInputLag", 0x23),
             new FeatureEnumeration<ResponceTime>("ResponceTime", 0x25),
             new FeatureEnumeration<VideoInputAutodetect>("VideoInputAutodetect", 0x33, delaySeconds: 4),
             new FeatureEnumeration<VideoInput>("VideoInput", 0x60, delaySeconds: 4),
-            new FeatureRange("Volume", 0x62, 0, 100, description: "Volume: value beetween 0 and 100 where 0 is the minimal volume, 10 is the maximal volume"),
+            new FeatureRange("Volume", 0x62, 0, 100, description: "Volume: value beetween 0 and 100 where 0 is the minimal volume, 100 is the maximal volume"),
             new FeatureEnumeration<AmbientLightSensor>("AmbientLightSensor", 0x66),
             new FeatureEnumeration<PresenceSensor>("PresenceSensor", 0x67),
             new FeatureEnumeration<AudioMute>("AudioMute", 0x8D),

@@ -16,7 +16,7 @@ Viewsonic-VP2785-4K-MCCS.exe config.yaml
 The full list of commands supported by the utility is given below, copy the desired commands to your configuration file: 
 
 ```yaml
-#Brightness: value beetween 0 and 100 where 0 is the minimal brightness, 10 is the maximal brightness
+#Brightness: value beetween 0 and 100 where 0 is the minimal brightness, 100 is the maximal brightness
 Brightness: 0
 
 #StandardColor: NotAvailable, sRGB, Adobe, EBU, SMPTEC, REC709, DICOMSIM, DCIP3, CAL1, CAL2, CAL3, iPhone, Custom
@@ -37,7 +37,7 @@ VideoInputAutodetect: NotAvailable
 #VideoInput: NotAvailable, DisplayPort, HDMI1, HDMI2, MiniDisplayPort, TypeC
 VideoInput: NotAvailable
 
-#Volume: value beetween 0 and 100 where 0 is the minimal volume, 10 is the maximal volume
+#Volume: value beetween 0 and 100 where 0 is the minimal volume, 100 is the maximal volume
 Volume: 0
 
 #AmbientLightSensor: NotAvailable, On, Off
