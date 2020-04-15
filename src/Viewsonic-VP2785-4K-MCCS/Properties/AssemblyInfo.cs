@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Viewsonic-VP2785-4K-MCCS")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A utility to control Viewsonic VP2785-4K monitors. See https://github.com/7orlum/Viewsonic-VP2785-4K-MCCS")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Pavel Veretennikov, 7orlum@gmail.com")]
+[assembly: AssemblyCompany("Pavel Veretennikov")]
 [assembly: AssemblyProduct("Viewsonic-VP2785-4K-MCCS")]
-[assembly: AssemblyCopyright("Pavel Veretennikov, 2019")]
+[assembly: AssemblyCopyright("© 2020 Pavel Veretennikov 7orlum@gmail.com")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.3.0.0")]
+[assembly: AssemblyFileVersion("1.3.0.0")]

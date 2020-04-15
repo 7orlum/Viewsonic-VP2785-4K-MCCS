@@ -23,11 +23,11 @@ namespace Viewsonic_VP2785_4K_MCCS
 
             uint physicalMonitorCount;
             if (!NativeMethods.GetNumberOfPhysicalMonitorsFromHMONITOR(monitorHandler, out physicalMonitorCount))
-                throw new InvalidOperationException($"{nameof(NativeMethods.GetNumberOfPhysicalMonitorsFromHMONITOR)} returned error {Marshal.GetLastWin32Error()}");
+                throw new InvalidOperationException($"{nameof(NativeMethods.GetNumberOfPhysicalMonitorsFromHMONITOR)} returned error 0x{Marshal.GetLastWin32Error():X8}");
 
             var physicalMonitors = new NativeMethods.PHYSICAL_MONITOR[physicalMonitorCount];
             if (!NativeMethods.GetPhysicalMonitorsFromHMONITOR(monitorHandler, physicalMonitorCount, physicalMonitors))
-                throw new InvalidOperationException($"{nameof(NativeMethods.GetPhysicalMonitorsFromHMONITOR)} returned error {Marshal.GetLastWin32Error()}");
+                throw new InvalidOperationException($"{nameof(NativeMethods.GetPhysicalMonitorsFromHMONITOR)} returned error 0x{Marshal.GetLastWin32Error():X8}");
 
             foreach (var physicalMonitor in physicalMonitors)
                 result.Add(new Monitor
@@ -48,11 +48,11 @@ namespace Viewsonic_VP2785_4K_MCCS
             {
                 uint length;
                 if (!NativeMethods.GetCapabilitiesStringLength(monitor.Handle, out length))
-                    throw new InvalidOperationException($"{nameof(NativeMethods.GetCapabilitiesStringLength)} returned error {Marshal.GetLastWin32Error()}");
+                    throw new InvalidOperationException($"{nameof(NativeMethods.GetCapabilitiesStringLength)} returned error 0x{Marshal.GetLastWin32Error():X8}");
 
                 var capabilitiesString = new StringBuilder((int)length);
                 if (!NativeMethods.CapabilitiesRequestAndCapabilitiesReply(monitor.Handle, capabilitiesString, length))
-                    throw new InvalidOperationException($"{nameof(NativeMethods.CapabilitiesRequestAndCapabilitiesReply)} returned error {Marshal.GetLastWin32Error()}");
+                    throw new InvalidOperationException($"{nameof(NativeMethods.CapabilitiesRequestAndCapabilitiesReply)} returned error 0x{Marshal.GetLastWin32Error():X8}");
 
                 monitor.Capabilities = Capabilities.Parse(capabilitiesString.ToString());
                 GetVCPFeatures(monitor.Handle, monitor.Capabilities);
@@ -69,12 +69,16 @@ namespace Viewsonic_VP2785_4K_MCCS
         {
             foreach (var vcpCode in capabilities.VCPCodes)
             {
-                if (!NativeMethods.GetVCPFeatureAndVCPFeatureReply(handle, vcpCode.Key, out var type, out var value, out var maxValue))
-                    throw new InvalidOperationException($"{nameof(NativeMethods.GetVCPFeatureAndVCPFeatureReply)} returned error {Marshal.GetLastWin32Error()}");
-
-                vcpCode.Value.Type = type;
-                vcpCode.Value.MaximumValue = maxValue;
-                vcpCode.Value.CurrentValue = value;
+                if (NativeMethods.GetVCPFeatureAndVCPFeatureReply(handle, vcpCode.Key, out var type, out var value, out var maxValue))
+                {
+                    vcpCode.Value.Type = type;
+                    vcpCode.Value.MaximumValue = maxValue;
+                    vcpCode.Value.CurrentValue = value;
+                }
+                else
+                { 
+                    vcpCode.Value.Error = true;
+                }
             }
         }
 

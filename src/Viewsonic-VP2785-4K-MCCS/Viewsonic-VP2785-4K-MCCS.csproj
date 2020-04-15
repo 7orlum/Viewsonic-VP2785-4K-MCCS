@@ -49,9 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Feature.cs" />
-    <Compile Include="Features.cs" />
+    <Compile Include="MonitorFeatures.cs" />
     <Compile Include="FeaturePIPPosition.cs" />
-    <Compile Include="FeatureEnumeration.cs" />
+    <Compile Include="FeatureEnum.cs" />
     <Compile Include="FeatureRange.cs" />
     <Compile Include="FeatureEnumerations.cs" />
     <Compile Include="Capabilities.cs" />

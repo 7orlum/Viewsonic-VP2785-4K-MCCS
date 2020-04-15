@@ -9,6 +9,7 @@ namespace Viewsonic_VP2785_4K_MCCS
     {
         public class VCPCode
         {
+            public bool Error { get; set; }
             public NativeMethods.MC_VCP_CODE_TYPE Type { get; set; }
             public string Access { get; set; }
             public uint CurrentValue { get; set; }
@@ -20,8 +21,8 @@ namespace Viewsonic_VP2785_4K_MCCS
 
         public string ProtocolClass { get; private set; }
         public string DysplayType { get; private set; }
-        public List<byte> Commands { get; private set; }
-        public Dictionary<byte, VCPCode> VCPCodes { get; private set; }
+        public List<byte> Commands { get; private set; } = new List<byte>();
+        public Dictionary<byte, VCPCode> VCPCodes { get; private set; } = new Dictionary<byte, VCPCode>();
         public string DysplayModel { get; private set; }
         public string SupportedMCCSVersion { get; private set; }
 

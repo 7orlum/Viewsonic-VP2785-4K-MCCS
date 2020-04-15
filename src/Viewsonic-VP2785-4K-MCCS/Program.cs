@@ -21,7 +21,7 @@ Viewsonic_VP2785_4K_MCCS /trace
 
 The full list of commands is given below, copy the desired commands to your configuration file:
 
-{Features.YamlConfigTemplate()}";
+{MonitorFeatures.YamlConfigTemplate()}";
 
 
         private static void Main(string[] args)
@@ -84,10 +84,10 @@ The full list of commands is given below, copy the desired commands to your conf
             var result = new Dictionary<Feature, uint>();
 
             foreach (var entry in ((YamlMappingNode)yaml.Documents[0].RootNode).Children)
-                if (Features.TryParse(entry.Key, entry.Value, out var feature, out var value))
+                if (MonitorFeatures.TryParse(entry.Key, entry.Value, out var feature, out var value))
                     result.Add(feature, value);
                 else
-                    Console.WriteLine($"Wrong command {entry.Key}, possible commands:\r\n{Features.YamlConfigTemplate()}");
+                    Console.WriteLine($"Wrong command {entry.Key}, possible commands:\r\n{MonitorFeatures.YamlConfigTemplate()}");
 
             return result;
         }
